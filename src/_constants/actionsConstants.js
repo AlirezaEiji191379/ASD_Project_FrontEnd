@@ -1,0 +1,5 @@
+export const userConstants = {
+    LOGIN_USER_REQUEST: 'LOGIN_USER',
+    LOGIN_USER_SUCCESS: 'LOGIN_USER_SUCCESS',
+    LOGIN_USER_ERROR: 'LOGIN_USER_ERROR',
+}
