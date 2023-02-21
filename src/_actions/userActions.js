@@ -5,21 +5,25 @@
 import {userConstants} from "../_constants/actionsConstants";
 import {userServices} from "../_services/userServices";
 
-function loginUser (email, password){
+function checkUser (email){
     return (dispatch) =>{
-        dispatch(loginUserRequest());
-        return userServices.login(email, password).then(
+        dispatch(userEmailRequest());
+        return userServices.sendEmail(email).then(
             data => {
-                dispatch(loginUserSuccess(data));
+                dispatch(userEmailExist(data));
             },
             error => {
-                dispatch(loginUserError(error));
+                dispatch(userEmailNotExist(error));
             }
         )
     }
 }
 
 
-const loginUserRequest = (payload) => {return {type: userConstants.LOGIN_USER_REQUEST, payload}};
-const loginUserSuccess = (payload) => {return {type: userConstants.LOGIN_USER_SUCCESS, payload}};
-const loginUserError = (payload) => {return {type: userConstants.LOGIN_USER_ERROR, payload}};
+const userEmailRequest = (payload) => {return {type: userConstants.LOGIN_USER_REQUEST, payload}};
+const userEmailExist = (payload) => {return {type: userConstants.LOGIN_USER_SUCCESS, payload}};
+const userEmailNotExist = (payload) => {return {type: userConstants.LOGIN_USER_ERROR, payload}};
+
+export const userActions = {
+    checkUser,
+};

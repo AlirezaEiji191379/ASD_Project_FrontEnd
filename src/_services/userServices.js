@@ -6,6 +6,7 @@ function handleResponse(response) {
     */
     return response.text().then(text => {
         const data = text && JSON.parse(text);
+        // TODO: How does backend inform us about user not exit? (Matin, )
         if (!response.ok) {
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
@@ -15,16 +16,16 @@ function handleResponse(response) {
     });
 }
 
-function login(email, password) {
+function sendEmail(email) {
     const requestOptions = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({email, password})
+        body: JSON.stringify({email})
     };
     return fetch(userPaths.LOGIN_PATH, requestOptions).then(handleResponse);
 }
 
 
 export const userServices = {
-    login: login
+    sendEmail: sendEmail
 }
