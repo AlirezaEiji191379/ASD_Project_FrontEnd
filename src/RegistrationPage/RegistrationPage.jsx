@@ -1,5 +1,5 @@
 import React from "react"
-import './Registration.css'
+import '../_styles/UserLogin.css'
 import {connect} from "react-redux";
 import {userActions} from "../_actions/userActions";
 import {useNavigate} from "react-router-dom";

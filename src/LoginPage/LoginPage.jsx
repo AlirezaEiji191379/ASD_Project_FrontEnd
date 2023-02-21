@@ -1,5 +1,5 @@
 import React from "react"
-import './LoginPage.css'
+import '../_styles/UserLogin.css'
 
 class LoginPage extends React.Component {
     render() {
