@@ -1,7 +1,7 @@
 import React from "react"
-import './Registration.css'
+import './LoginPage.css'
 
-class RegistrationPage extends React.Component {
+class LoginPage extends React.Component {
     render() {
         return (
             <div className="Auth-form-container">
@@ -9,16 +9,16 @@ class RegistrationPage extends React.Component {
                     <div className="Auth-form-content">
                         <h3 className="Auth-form-title">Sign Up | Login</h3>
                         <div className="form-group mt-3">
-                            <label>Email address</label>
+                            <label>Password</label>
                             <input
-                                type="email"
+                                type="password"
                                 className="form-control mt-1"
-                                placeholder="Enter email"
+                                placeholder="Enter password"
                             />
                         </div>
                         <div className="d-grid gap-2 mt-3">
                             <button type="submit" className="btn btn-primary">
-                                Login
+                                Submit
                             </button>
                         </div>
                     </div>
@@ -28,4 +28,4 @@ class RegistrationPage extends React.Component {
     }
 }
 
-export {RegistrationPage};
+export {LoginPage};
