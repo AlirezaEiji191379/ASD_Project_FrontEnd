@@ -15,5 +15,5 @@ const mapStateToProps = (state, ownProps) => ({
   card: state.tasksById[ownProps.taskId]
 });
 
-// export default connect(mapStateToProps)(Task);
-export {Task};
+const connected =  connect(mapStateToProps)(Task);
+export {connected as Task};

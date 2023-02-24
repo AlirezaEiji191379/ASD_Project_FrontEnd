@@ -21,5 +21,5 @@ class Board extends Component {
 
 const mapStateToProps = state => ({ board: state.board });
 
-// export default connect(mapStateToProps)(Board);
-export {Board};
+const connected =  connect(mapStateToProps)(Board);
+export {connected as Board};

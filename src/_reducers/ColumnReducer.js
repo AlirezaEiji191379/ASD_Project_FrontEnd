@@ -18,3 +18,5 @@ const columnsById = (state = {}, action) => {
       return state;
   }
 };
+
+export default columnsById;

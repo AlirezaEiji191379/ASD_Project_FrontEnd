@@ -33,5 +33,5 @@ const mapStateToProps = (state, ownProps) => ({
   list: state.columnsById[ownProps.columnId]
 });
 
-// export default connect(mapStateToProps)(Column);
-export {Column};
+const connected =  connect(mapStateToProps)(Column);
+export {connected as Column};

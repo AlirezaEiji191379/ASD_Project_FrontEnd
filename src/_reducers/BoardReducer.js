@@ -8,3 +8,5 @@ const board = (state = { columns: [] }, action) => {
         return state;
     }
   };
+
+export default board;

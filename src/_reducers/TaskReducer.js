@@ -8,3 +8,5 @@ const tasksById = (state = {}, action) => {
       return state;
   }
 };
+
+export default tasksById;
