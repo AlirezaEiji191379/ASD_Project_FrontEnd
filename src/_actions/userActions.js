@@ -6,11 +6,12 @@ import {userConstants} from "../_constants/actionsConstants";
 import {userServices} from "../_services/userServices";
 
 function checkUser (email){
+    const payload = {email: email};
+    // return userEmailExist(payload);
     return (dispatch) =>{
-        dispatch(userEmailRequest());
         return userServices.sendEmail(email).then(
             data => {
-                dispatch(userEmailExist(data));
+                dispatch(userEmailExist(payload));
             },
             error => {
                 dispatch(userEmailNotExist(error));
@@ -20,9 +21,8 @@ function checkUser (email){
 }
 
 
-const userEmailRequest = (payload) => {return {type: userConstants.LOGIN_USER_REQUEST, payload}};
-const userEmailExist = (payload) => {return {type: userConstants.LOGIN_USER_SUCCESS, payload}};
-const userEmailNotExist = (payload) => {return {type: userConstants.LOGIN_USER_ERROR, payload}};
+const userEmailExist = (payload) => {return {type: userConstants.USER_EXISTS, payload}};
+const userEmailNotExist = (payload) => {return {type: userConstants.USER_DOES_NOT_EXISTS, payload}};
 
 export const userActions = {
     checkUser,

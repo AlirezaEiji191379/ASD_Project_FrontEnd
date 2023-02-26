@@ -1,14 +1,22 @@
-import React from "react"
+import React, {useState} from "react"
 import '../_styles/UserLogin.css'
 import {connect} from "react-redux";
 import {userActions} from "../_actions/userActions";
 import {useNavigate} from "react-router-dom";
 
-function RegistrationPage() {
+function RegistrationPage(props) {
     const navigate = useNavigate();
-    function handleNextButton(){
-        navigate('/login') ;
+    const [email, setEmail] = useState('');
+
+    function handleNextButton() {
+        props.checkUser(email);
+        navigate('/login');
     }
+
+    function handleChange(e) {
+        setEmail(e.target.value);
+    }
+
     return (
         <div className="Auth-form-container">
             <form className="Auth-form">
@@ -20,6 +28,7 @@ function RegistrationPage() {
                             type="email"
                             className="form-control mt-1"
                             placeholder="Enter email"
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="d-grid gap-2 mt-3">
@@ -38,10 +47,10 @@ function RegistrationPage() {
 //     return {registering};
 // }
 //
-// const mapDispatchToProps = {
-//     checkUser: userActions.checkUser
-// }
+const mapDispatchToProps = {
+    checkUser: userActions.checkUser
+}
 //
-// const connectedRegisterPage = connect(mapStateToProps, mapDispatchToProps)(RegistrationPage);
-// export {connectedRegisterPage as RegistrationPage};
- export {RegistrationPage};
+const connectedRegisterPage = connect(null, mapDispatchToProps)(RegistrationPage);
+export {connectedRegisterPage as RegistrationPage};
+// export {RegistrationPage};
