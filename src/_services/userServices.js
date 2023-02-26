@@ -25,7 +25,30 @@ function sendEmail(email) {
     return fetch(userPaths.LOGIN_PATH, requestOptions).then(handleResponse);
 }
 
+function login(email, password) {
+    //TODO: TO IMPLEMENT
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({})
+    };
+    return fetch(userPaths.LOGIN_PATH, requestOptions).then(handleResponse);
+}
+
+function register(email, password) {
+    //TODO: TO IMPLEMENT
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({})
+    };
+    return fetch(userPaths.LOGIN_PATH, requestOptions).then(handleResponse);
+}
 
 export const userServices = {
-    sendEmail: sendEmail
+    sendEmail: sendEmail,
+    login: login,
+    register: register
 }
