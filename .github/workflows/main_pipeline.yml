@@ -9,7 +9,7 @@ jobs:
   compile_and_test:
       runs-on: ubuntu-latest
       steps:
-        - uses: ./.github/workflows/feature_pr.yml
+        - uses: ../../../.github/workflows/feature_pr.yml
   
   build_package:
       needs: compile_and_test
