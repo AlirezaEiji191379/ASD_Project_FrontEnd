@@ -1,4 +1,4 @@
-name: compile feature branches
+name: compile and test feature branches
 
 on:
   push:
