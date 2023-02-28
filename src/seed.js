@@ -26,5 +26,4 @@ export default function seed(store) {
       cardText: "Second card"
     }
   });
-
 };
