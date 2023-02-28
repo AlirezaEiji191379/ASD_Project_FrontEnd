@@ -10,7 +10,8 @@ jobs:
      - uses: ./.github/workflows/feature_pr.yml
   
   build_package:
-    run: npm run build
+    - name: building package 
+    - run: npm run build
 
   dockerize:
       - name: Build & push Docker image
