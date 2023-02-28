@@ -3,13 +3,12 @@ name: NodeJS with Webpack
 on:
   push:
     branches:
-      - main
       - feature/*
   pull_request:
     branches: [ "main" ]
 
 jobs:
-  build:
+  compile and test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
