@@ -1,5 +1,4 @@
 name: build and create docker image
-
 on:
   push:
     branches:
