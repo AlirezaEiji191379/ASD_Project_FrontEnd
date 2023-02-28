@@ -6,7 +6,7 @@ on:
 
 jobs:
   compile_and_test:
-      uses: ./.github/workflows/feature_pr.yml
+      uses: AlirezaEiji191379/ASD_Project_FrontEnd/.github/workflows/feature_pr.yml@main
   
   build_package:
       needs: compile_and_test
