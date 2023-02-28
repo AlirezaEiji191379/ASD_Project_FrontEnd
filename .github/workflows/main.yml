@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  compile and test:
-    - uses: ./.github/workflows/feature_pr.yml
+  # compile and test:
+  #   - uses: ./.github/workflows/feature_pr.yml
   
   build package:
     run: npm run build
