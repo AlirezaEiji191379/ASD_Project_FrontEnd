@@ -1,4 +1,4 @@
-name: NodeJS with Webpack
+name: compile feature branches
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: NodeJS with Webpack
+name: build and create docker image
 
 on:
   push:
