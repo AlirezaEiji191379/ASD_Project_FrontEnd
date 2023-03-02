@@ -1,21 +1,21 @@
-const board = (state = { lists: [] }, action) => {
+const board = (state = { columns: [] }, action) => {
   switch (action.type) {
-    case "ADD_LIST": {
-      const { listId } = action.payload;
-      return { lists: [...state.lists, listId] };
+    case "ADD_COLUMN": {
+      const { columnId } = action.payload;
+      return { columns: [...state.columns, columnId] };
     }
-    case "MOVE_LIST": {
-      const { oldListIndex, newListIndex } = action.payload;
-      const newLists = Array.from(state.lists);
-      const [removedList] = newLists.splice(oldListIndex, 1);
-      newLists.splice(newListIndex, 0, removedList);
-      return { lists: newLists };
+    case "MOVE_COLUMN": {
+      const { oldColumnIndex, newColumnIndex } = action.payload;
+      const newColumns = Array.from(state.columns);
+      const [removedColumn] = newColumns.splice(oldColumnIndex, 1);
+      newColumns.splice(newColumnIndex, 0, removedColumn);
+      return { columns: newColumns };
     }
-    case "DELETE_LIST": {
-      const { listId } = action.payload;
-      const filterDeleted = tmpListId => tmpListId !== listId;
-      const newLists = state.lists.filter(filterDeleted);
-      return { lists: newLists };
+    case "DELETE_COLUMN": {
+      const { columnId } = action.payload;
+      const filterDeleted = tmpColumnId => tmpColumnId !== columnId;
+      const newColumns = state.columns.filter(filterDeleted);
+      return { columns: newColumns };
     }
     default:
       return state;

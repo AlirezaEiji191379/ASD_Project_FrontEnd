@@ -1,10 +1,10 @@
-import "../_styles/CardEditor.css";
+import "../_styles/TaskEditor.css";
 
 import React, { Component } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import EditButtons from "./EditButtons";
 
-class CardEditor extends Component {
+class TaskEditor extends Component {
   state = {
     text: this.props.text || ""
   };
@@ -25,12 +25,12 @@ class CardEditor extends Component {
     const { onSave, onCancel, onDelete, adding } = this.props;
 
     return (
-      <div className="Edit-Card">
-        <div className="Card">
+      <div className="Edit-Task">
+        <div className="Task">
           <TextareaAutosize
             autoFocus
-            className="Edit-Card-Textarea"
-            placeholder="Enter the text for this card..."
+            className="Edit-Task-Textarea"
+            placeholder="Enter the text for this task..."
             value={text}
             onChange={this.handleChangeText}
             onKeyDown={this.onEnter}
@@ -38,7 +38,7 @@ class CardEditor extends Component {
         </div>
         <EditButtons
           handleSave={() => onSave(text)}
-          saveLabel={adding ? "Add card" : "Save"}
+          saveLabel={adding ? "Add task" : "Save"}
           handleDelete={onDelete}
           handleCancel={onCancel}
         />
@@ -47,4 +47,4 @@ class CardEditor extends Component {
   }
 }
 
-export default CardEditor;
+export default TaskEditor;

@@ -1,14 +1,14 @@
-.Edit-Card .Card {
+.Edit-Task .Task {
   min-height: 50px;
   padding-left: 8px;
   padding-right: 15px;
 }
 
-.Edit-Card .Card:hover {
+.Edit-Task .Task:hover {
   background: white;
 }
 
-.Edit-Card-Textarea {
+.Edit-Task-Textarea {
   width: 100%;
   border: none;
   resize: none;

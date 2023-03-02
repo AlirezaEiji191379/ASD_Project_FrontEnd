@@ -1,67 +1,67 @@
-const listsById = (state = {}, action) => {
+const columnsById = (state = {}, action) => {
   switch (action.type) {
-    case "ADD_LIST": {
-      const { listId, listTitle } = action.payload;
+    case "ADD_COLUMN": {
+      const { columnId, columnTitle } = action.payload;
       return {
         ...state,
-        [listId]: { _id: listId, title: listTitle, cards: [] }
+        [columnId]: { _id: columnId, title: columnTitle, tasks: [] }
       };
     }
-    case "CHANGE_LIST_TITLE": {
-      const { listId, listTitle } = action.payload;
+    case "CHANGE_COLUMN_TITLE": {
+      const { columnId, columnTitle } = action.payload;
       return {
         ...state,
-        [listId]: { ...state[listId], title: listTitle }
+        [columnId]: { ...state[columnId], title: columnTitle }
       };
     }
-    case "DELETE_LIST": {
-      const { listId } = action.payload;
-      const { [listId]: deletedList, ...restOfLists } = state;
-      return restOfLists;
+    case "DELETE_COLUMN": {
+      const { columnId } = action.payload;
+      const { [columnId]: deletedColumn, ...restOfColumns } = state;
+      return restOfColumns;
     }
-    case "ADD_CARD": {
-      const { listId, cardId } = action.payload;
+    case "ADD_TASK": {
+      const { columnId, taskId } = action.payload;
       return {
         ...state,
-        [listId]: { ...state[listId], cards: [...state[listId].cards, cardId] }
+        [columnId]: { ...state[columnId], tasks: [...state[columnId].tasks, taskId] }
       };
     }
-    case "MOVE_CARD": {
+    case "MOVE_TASK": {
       const {
-        oldCardIndex,
-        newCardIndex,
-        sourceListId,
-        destListId
+        oldTaskIndex,
+        newTaskIndex,
+        sourceColumnId,
+        destColumnId
       } = action.payload;
-      // Move within the same list
-      if (sourceListId === destListId) {
-        const newCards = Array.from(state[sourceListId].cards);
-        const [removedCard] = newCards.splice(oldCardIndex, 1);
-        newCards.splice(newCardIndex, 0, removedCard);
+      // Move within the same column
+      if (sourceColumnId === destColumnId) {
+        const newTasks = Array.from(state[sourceColumnId].tasks);
+        const [removedTask] = newTasks.splice(oldTaskIndex, 1);
+        newTasks.splice(newTaskIndex, 0, removedTask);
         return {
           ...state,
-          [sourceListId]: { ...state[sourceListId], cards: newCards }
+          [sourceColumnId]: { ...state[sourceColumnId], tasks: newTasks }
         };
       }
-      // Move card from one list to another
-      const sourceCards = Array.from(state[sourceListId].cards);
-      const [removedCard] = sourceCards.splice(oldCardIndex, 1);
-      const destinationCards = Array.from(state[destListId].cards);
-      destinationCards.splice(newCardIndex, 0, removedCard);
+      // Move task from one column to another
+      const sourceTasks = Array.from(state[sourceColumnId].tasks);
+      const [removedTask] = sourceTasks.splice(oldTaskIndex, 1);
+      const destinationTasks = Array.from(state[destColumnId].tasks);
+      destinationTasks.splice(newTaskIndex, 0, removedTask);
       return {
         ...state,
-        [sourceListId]: { ...state[sourceListId], cards: sourceCards },
-        [destListId]: { ...state[destListId], cards: destinationCards }
+        [sourceColumnId]: { ...state[sourceColumnId], tasks: sourceTasks },
+        [destColumnId]: { ...state[destColumnId], tasks: destinationTasks }
       };
     }
-    case "DELETE_CARD": {
-      const { cardId: deletedCardId, listId } = action.payload;
-      const filterDeleted = cardId => cardId !== deletedCardId;
+    case "DELETE_TASK": {
+      const { taskId: deletedTaskId, columnId } = action.payload;
+      const filterDeleted = taskId => taskId !== deletedTaskId;
       return {
         ...state,
-        [listId]: {
-          ...state[listId],
-          cards: state[listId].cards.filter(filterDeleted)
+        [columnId]: {
+          ...state[columnId],
+          tasks: state[columnId].tasks.filter(filterDeleted)
         }
       };
     }
@@ -71,4 +71,4 @@ const listsById = (state = {}, action) => {
 };
 
 
-export default listsById;
+export default columnsById;

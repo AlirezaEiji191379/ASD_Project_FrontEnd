@@ -1,13 +1,13 @@
 import { combineReducers, createStore } from "redux";
 import seed from "./seed";
 import board from "./_reducers/BoardReducer";
-import listsById from "./_reducers/ColumnReducer";
-import cardsById from "./_reducers/TaskReducer";
+import columnsById from "./_reducers/ColumnReducer";
+import tasksById from "./_reducers/TaskReducer";
 
 const reducers = combineReducers({
   board,
-  listsById,
-  cardsById
+  columnsById,
+  tasksById
 });
 
 const store = createStore(reducers);

@@ -1,25 +1,25 @@
-const cardsById = (state = {}, action) => {
+const tasksById = (state = {}, action) => {
   switch (action.type) {
-    case "ADD_CARD": {
-      const { cardText, cardId } = action.payload;
-      return { ...state, [cardId]: { text: cardText, _id: cardId } };
+    case "ADD_TASK": {
+      const { taskText, taskId } = action.payload;
+      return { ...state, [taskId]: { text: taskText, _id: taskId } };
     }
-    case "CHANGE_CARD_TEXT": {
-      const { cardText, cardId } = action.payload;
-      return { ...state, [cardId]: { ...state[cardId], text: cardText } };
+    case "CHANGE_TASK_TEXT": {
+      const { taskText, taskId } = action.payload;
+      return { ...state, [taskId]: { ...state[taskId], text: taskText } };
     }
-    case "DELETE_CARD": {
-      const { cardId } = action.payload;
-      const { [cardId]: deletedCard, ...restOfCards } = state;
-      return restOfCards;
+    case "DELETE_TASK": {
+      const { taskId } = action.payload;
+      const { [taskId]: deletedTask, ...restOfTasks } = state;
+      return restOfTasks;
     }
-    // Find every card from the deleted list and remove it
-    case "DELETE_LIST": {
-      const { cards: cardIds } = action.payload;
+    // Find every task from the deleted column and remove it
+    case "DELETE_COLUMN": {
+      const { tasks: taskIds } = action.payload;
       return Object.keys(state)
-        .filter(cardId => !cardIds.includes(cardId))
+        .filter(taskId => !taskIds.includes(taskId))
         .reduce(
-          (newState, cardId) => ({ ...newState, [cardId]: state[cardId] }),
+          (newState, taskId) => ({ ...newState, [taskId]: state[taskId] }),
           {}
         );
     }
@@ -28,4 +28,4 @@ const cardsById = (state = {}, action) => {
   }
 };
 
-export default cardsById;
+export default tasksById;

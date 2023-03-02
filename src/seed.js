@@ -1,29 +1,29 @@
 import shortid from "shortid";
 
 export default function seed(store) {
-  console.log("Insert first list");
-  const firstListId = shortid.generate();
+  console.log("Insert first column");
+  const firstColumnId = shortid.generate();
 
   store.dispatch({
-    type: "ADD_LIST",
-    payload: { listId: firstListId, listTitle: "First list" }
+    type: "ADD_COLUMN",
+    payload: { columnId: firstColumnId, columnTitle: "First column" }
   });
 
   store.dispatch({
-    type: "ADD_CARD",
+    type: "ADD_TASK",
     payload: {
-      listId: firstListId,
-      cardId: shortid.generate(),
-      cardText: "First card"
+      columnId: firstColumnId,
+      taskId: shortid.generate(),
+      taskText: "First task"
     }
   });
 
   store.dispatch({
-    type: "ADD_CARD",
+    type: "ADD_TASK",
     payload: {
-      listId: firstListId,
-      cardId: shortid.generate(),
-      cardText: "Second card"
+      columnId: firstColumnId,
+      taskId: shortid.generate(),
+      taskText: "Second task"
     }
   });
 };

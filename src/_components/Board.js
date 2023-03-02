@@ -4,16 +4,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
-import List from "./List";
-import AddList from "./AddList";
+import Column from "./Column";
+import AddColumn from "./AddColumn";
 
 class Board extends Component {
   state = {
-    addingList: false
+    addingColumn: false
   };
 
-  toggleAddingList = () =>
-    this.setState({ addingList: !this.state.addingList });
+  toggleAddingColumn = () =>
+    this.setState({ addingColumn: !this.state.addingColumn });
 
   handleDragEnd = ({ source, destination, type }) => {
     // dropped outside the allowed zones
@@ -21,33 +21,33 @@ class Board extends Component {
 
     const { dispatch } = this.props;
 
-    // Move list
+    // Move column
     if (type === "COLUMN") {
       // Prevent update if nothing has changed
       if (source.index !== destination.index) {
         dispatch({
-          type: "MOVE_LIST",
+          type: "MOVE_COLUMN",
           payload: {
-            oldListIndex: source.index,
-            newListIndex: destination.index
+            oldColumnIndex: source.index,
+            newColumnIndex: destination.index
           }
         });
       }
       return;
     }
 
-    // Move card
+    // Move task
     if (
       source.index !== destination.index ||
       source.droppableId !== destination.droppableId
     ) {
       dispatch({
-        type: "MOVE_CARD",
+        type: "MOVE_TASK",
         payload: {
-          sourceListId: source.droppableId,
-          destListId: destination.droppableId,
-          oldCardIndex: source.index,
-          newCardIndex: destination.index
+          sourceColumnId: source.droppableId,
+          destColumnId: destination.droppableId,
+          oldTaskIndex: source.index,
+          newTaskIndex: destination.index
         }
       });
     }
@@ -55,28 +55,28 @@ class Board extends Component {
 
   render() {
     const { board } = this.props;
-    const { addingList } = this.state;
+    const { addingColumn } = this.state;
 
     return (
       <DragDropContext onDragEnd={this.handleDragEnd}>
         <Droppable droppableId="board" direction="horizontal" type="COLUMN">
           {(provided, _snapshot) => (
             <div className="Board" ref={provided.innerRef}>
-              {board.lists.map((listId, index) => {
-                return <List listId={listId} key={listId} index={index} />;
+              {board.columns.map((columnId, index) => {
+                return <Column columnId={columnId} key={columnId} index={index} />;
               })}
 
               {provided.placeholder}
 
-              <div className="Add-List">
-                {addingList ? (
-                  <AddList toggleAddingList={this.toggleAddingList} />
+              <div className="Add-Column">
+                {addingColumn ? (
+                  <AddColumn toggleAddingColumn={this.toggleAddingColumn} />
                 ) : (
                   <div
-                    onClick={this.toggleAddingList}
-                    className="Add-List-Button"
+                    onClick={this.toggleAddingColumn}
+                    className="Add-Column-Button"
                   >
-                    <ion-icon name="add" /> Add a list
+                    <ion-icon name="add" /> Add a column
                   </div>
                 )}
               </div>

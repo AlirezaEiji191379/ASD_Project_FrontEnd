@@ -1,15 +1,15 @@
-import "../_styles/ListEditor.css";
+import "../_styles/ColumnEditor.css";
 
 import React, { Component } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
-class ListEditor extends Component {
+class ColumnEditor extends Component {
   ref = React.createRef();
 
   onEnter = e => {
     if (e.keyCode === 13) {
       e.preventDefault();
-      this.props.saveList();
+      this.props.saveColumn();
     }
   };
 
@@ -32,23 +32,23 @@ class ListEditor extends Component {
   }
 
   render() {
-    const { title, handleChangeTitle, deleteList } = this.props;
+    const { title, handleChangeTitle, deleteColumn } = this.props;
 
     return (
-      <div className="List-Title-Edit" ref={this.ref}>
+      <div className="Column-Title-Edit" ref={this.ref}>
         <TextareaAutosize
           autoFocus
-          className="List-Title-Textarea"
-          placeholder="Enter list title..."
+          className="Column-Title-Textarea"
+          placeholder="Enter column title..."
           value={title}
           onChange={handleChangeTitle}
           onKeyDown={this.onEnter}
-          style={{ width: deleteList ? 220 : 245 }}
+          style={{ width: deleteColumn ? 220 : 245 }}
         />
-        {deleteList && <ion-icon name="trash" onClick={deleteList} />}
+        {deleteColumn && <ion-icon name="trash" onClick={deleteColumn} />}
       </div>
     );
   }
 }
 
-export default ListEditor;
+export default ColumnEditor;

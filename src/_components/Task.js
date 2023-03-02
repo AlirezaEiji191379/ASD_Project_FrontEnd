@@ -1,12 +1,12 @@
-import "../_styles/Card.css";
+import "../_styles/Task.css";
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Draggable } from "react-beautiful-dnd";
 
-import CardEditor from "./CardEditor";
+import TaskEditor from "./TaskEditor";
 
-class Card extends Component {
+class Task extends Component {
   state = {
     hover: false,
     editing: false
@@ -19,68 +19,68 @@ class Card extends Component {
     this.setState({
       hover: false,
       editing: true,
-      text: this.props.card.text
+      text: this.props.task.text
     });
 
   endEditing = () => this.setState({ hover: false, editing: false });
 
-  editCard = async text => {
-    const { card, dispatch } = this.props;
+  editTask = async text => {
+    const { task, dispatch } = this.props;
 
     this.endEditing();
 
     dispatch({
-      type: "CHANGE_CARD_TEXT",
-      payload: { cardId: card._id, cardText: text }
+      type: "CHANGE_TASK_TEXT",
+      payload: { taskId: task._id, taskText: text }
     });
   };
 
-  deleteCard = async () => {
-    const { listId, card, dispatch } = this.props;
+  deleteTask = async () => {
+    const { columnId, task, dispatch } = this.props;
 
-    if (window.confirm("Are you sure to delete this card?")) {
+    if (window.confirm("Are you sure to delete this task?")) {
       dispatch({
-        type: "DELETE_CARD",
-        payload: { cardId: card._id, listId }
+        type: "DELETE_TASK",
+        payload: { taskId: task._id, columnId }
       });
     }
   };
 
   render() {
-    const { card, index } = this.props;
+    const { task, index } = this.props;
     const { hover, editing } = this.state;
 
     if (!editing) {
       return (
-        <Draggable draggableId={card._id} index={index}>
+        <Draggable draggableId={task._id} index={index}>
           {(provided, snapshot) => (
             <div
               ref={provided.innerRef}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
-              className="Card"
+              className="Task"
               onMouseEnter={this.startHover}
               onMouseLeave={this.endHover}
             >
               {hover && (
-                <div className="Card-Icons">
-                  <div className="Card-Icon" onClick={this.startEditing}>
+                <div className="Task-Icons">
+                  <div className="Task-Icon" onClick={this.startEditing}>
                     <ion-icon name="create" />
                   </div>
                 </div>
               )}
 
-              {card.text}
+              {task.text}
             </div>
           )}
         </Draggable>
       );
     } else {
       return (
-        <CardEditor
-          text={card.text}
-          onSave={this.editCard}
-          onDelete={this.deleteCard}
+        <TaskEditor
+          text={task.text}
+          onSave={this.editTask}
+          onDelete={this.deleteTask}
           onCancel={this.endEditing}
         />
       );
@@ -89,7 +89,7 @@ class Card extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  card: state.cardsById[ownProps.cardId]
+  task: state.tasksById[ownProps.taskId]
 });
 
-export default connect(mapStateToProps)(Card);
+export default connect(mapStateToProps)(Task);
