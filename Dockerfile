@@ -1,9 +1,8 @@
 FROM node:14 AS builder
-# Set working directory
 WORKDIR /app
-# Copy all files from current directory to working dir in image
-COPY ../../ .
-# install node modules and build assets
+COPY . .
+RUN rm package-lock.json
+RUN npm install
 RUN npm run build
 
 
