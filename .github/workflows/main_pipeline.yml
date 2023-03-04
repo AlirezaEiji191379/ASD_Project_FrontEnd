@@ -43,4 +43,4 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: 22
-          script: docker service update asd_nginx --image alirezaeiji151379/asd_fronend:beta      
+          script: docker pull alirezaeiji151379/asd_fronend:beta & docker service update asd_nginx
