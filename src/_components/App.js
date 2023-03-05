@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <div className="App">
         <div style={styles.columnContainer}>
-          {columns && columns.map(column => <Column title={column.title} tasks= {column.tasks} />)}
+          {columns && columns.map(column => <Column key={column.id} title={column.title} tasks= {column.tasks} />)}
         </div>
       </div>
     );

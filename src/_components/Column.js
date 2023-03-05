@@ -1,11 +1,13 @@
 import React from "react";
 import Task from "./Task";
+import ActionButton from "./ActionButton";
 
 const Column = ({title, tasks}) => {
     return(
         <div style= {styles.ColumnContainer}>
-        <h3>{title}</h3>
-        {tasks.map(task => <Task text={task.text} />)}
+            <h3>{title}</h3>
+            {tasks.map(task => <Task key={task.id} text={task.text} />)}
+            <ActionButton task/>
         </div>
     )
 }
