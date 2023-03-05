@@ -1,17 +1,17 @@
 import React from "react";
 import Task from "./Task";
 
-const Column = ({title}) => {
+const Column = ({title, tasks}) => {
     return(
-        <div style= {styles.container}>
+        <div style= {styles.ColumnContainer}>
         <h3>{title}</h3>
-        <Task />
+        {tasks.map(task => <Task text={task.text} />)}
         </div>
     )
 }
 
 const styles = {
-    container: {
+    ColumnContainer: {
         backgroundColor: "#ECEBEB",
         borderRadius: 3,
         width: 300,
