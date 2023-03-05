@@ -3,6 +3,8 @@ import React from "react";
 import TextareaAutosize from 'react-textarea-autosize';
 import Card from '@mui/material/Card';
 import { Button } from "@mui/material";
+import { connect } from "react-redux";
+import { addColumn } from "../_actions/columnActions";
 class ActionButton extends React.Component{
 
     state = {
@@ -28,6 +30,17 @@ class ActionButton extends React.Component{
         this.setState({
             text: e.target.value
         });
+    }
+
+    handleAddColumn = () => {
+        const {dispatch} = this.props;
+        const {text} = this.state;
+
+        if (text){
+            dispatch(addColumn(text));
+        }
+
+        return;
     }
 
     renderAddButton = () => {
@@ -85,7 +98,7 @@ class ActionButton extends React.Component{
                     />
                 </Card>
                 <div style={styles.taskButtonContainer}>
-                    <Button variant="contained" style ={{color : "white", backgroundColor : "#5aac44"}}>
+                    <Button onMouseDown={this.handleAddColumn} variant="contained" style ={{color : "white", backgroundColor : "#5aac44"}}>
                         {buttonTitle}
                     </Button>
                     <Icon style = {{marginLeft: 8, cursor : "pointer", }}>
@@ -118,4 +131,4 @@ const styles = {
     }
 }
 
-export default ActionButton;
+export default connect ()(ActionButton);
