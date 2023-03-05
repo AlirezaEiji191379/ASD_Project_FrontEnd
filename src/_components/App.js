@@ -1,12 +1,21 @@
 import Column from "./Column";
+import { connect } from "react-redux";
+import { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <h2>hello</h2>
-      <Column title= "test"/>
-    </div>
-  );
+class App extends Component {
+  render(){
+    const columns = this.props.columns;
+    console.log(this.props.columns);
+    return (
+      <div className="App">
+        {columns && columns.map(column => <Column title={column.title} tasks= {column.tasks} />)}
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  columns: state.columns
+})
+
+export default connect(mapStateToProps)(App);
