@@ -6,11 +6,10 @@ import ActionButton from "./ActionButton";
 class App extends Component {
   render(){
     const columns = this.props.columns;
-    console.log(this.props.columns);
     return (
       <div className="App">
         <div style={styles.columnContainer}>
-          {columns && columns.map(column => <Column key={column.id} title={column.title} tasks= {column.tasks} />)}
+          {columns && columns.map(column => <Column columnId = {column.id} key={column.id} title={column.title} tasks= {column.tasks} />)}
           <ActionButton column />
         </div>
       </div>
