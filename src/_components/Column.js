@@ -12,10 +12,11 @@ const Column = ({title, tasks}) => {
 
 const styles = {
     ColumnContainer: {
-        backgroundColor: "#ECEBEB",
+        backgroundColor: "#dfe3e6",
         borderRadius: 3,
         width: 300,
-        padding: 6
+        padding: 6,
+        marginRight: 9
     }
 }
 

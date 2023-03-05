@@ -8,9 +8,18 @@ class App extends Component {
     console.log(this.props.columns);
     return (
       <div className="App">
-        {columns && columns.map(column => <Column title={column.title} tasks= {column.tasks} />)}
+        <div style={styles.columnContainer}>
+          {columns && columns.map(column => <Column title={column.title} tasks= {column.tasks} />)}
+        </div>
       </div>
     );
+  }
+}
+
+const styles = {
+  columnContainer:{
+    display: "flex",
+    flexDirection: "row"
   }
 }
 
