@@ -1,7 +1,35 @@
 import Icon from "@mui/material/Icon";
 import React from "react";
-
+import TextareaAutosize from 'react-textarea-autosize';
+import Card from '@mui/material/Card';
+import { Button } from "@mui/material";
 class ActionButton extends React.Component{
+
+    state = {
+        formOpen: false,
+        text: ""
+    }
+
+    openForm = () =>{
+        console.log("here");
+        this.setState({
+            formOpen: true
+        });
+        console.log(this.state.formOpen);
+    }
+
+    closeForm = e => {
+        this.setState({
+            formOpen : false
+        });
+    }
+
+    handleInputChange = e => {
+        this.setState({
+            text: e.target.value
+        });
+    }
+
     renderAddButton = () => {
         const {column} = this.props;
 
@@ -12,6 +40,7 @@ class ActionButton extends React.Component{
 
         return (
             <div 
+                onClick={this.openForm}
                 style= {{
                     ...styles.addButtonContainer,
                     opacity: buttonTextOpacity,
@@ -25,8 +54,50 @@ class ActionButton extends React.Component{
         )
     }
 
+    renderForm = () => {
+
+        const {column} = this.props;
+
+        const placeholder = column ? "Enter column title ... " : "Enter a title for this task ...";
+
+        const buttonTitle = column ? "Add Column" : "Add Task";
+
+        return (
+            <div>
+                <Card style = {{
+                    minHeight: 80,
+                    minWidth: 272,
+                    padding: "6px 8px 2px"
+                }}>
+                    <TextareaAutosize
+                        placeholder={placeholder}
+                        autoFocus
+                        onBlur={this.closeForm}
+                        value = {this.state.text}
+                        onChange = {this.handleInputChange}
+                        style = {{
+                            resize : "none",
+                            width : "100%",
+                            overflow : "hidden",
+                            outline : "none",
+                            border : "none"
+                        }}
+                    />
+                </Card>
+                <div style={styles.taskButtonContainer}>
+                    <Button variant="contained" style ={{color : "white", backgroundColor : "#5aac44"}}>
+                        {buttonTitle}
+                    </Button>
+                    <Icon style = {{marginLeft: 8, cursor : "pointer", }}>
+                        close
+                    </Icon>
+                </div>
+            </div> 
+        )
+    }
+
     render(){
-        return <this.renderAddButton />;
+        return this.state.formOpen? <this.renderForm /> : <this.renderAddButton />;
     }
 }
 
@@ -39,6 +110,11 @@ const styles = {
         height: 36,
         width: 272,
         paddingLeft: 10
+    },
+    taskButtonContainer:{
+        marginTop: 8,
+        display: "flex",
+        alignItems: "center"
     }
 }
 
