@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './style.css';
+import {profileServices} from "../../../_services/profileServices";
 
 function RightContent(props) {
 
@@ -13,11 +14,28 @@ function RightContent(props) {
         },
     })
 
+    useEffect(() => {
+        const user = profileServices.getUserInfo(props.email);
+        setState({user: user}) //TODO: Fix response mistype (Matin, )
+    }, [props.email]);
+
     function inputChange(event) {
         const {name, value} = event.target;
         const user = state.user;
         user[name] = value;
         setState({user: user});
+    }
+
+    function handleSaveButton(){
+
+        profileServices.updateUserProfile(state.user).then(
+            data => {
+                alert('Profile updated successfully!')
+            },
+            error => {
+                alert('Profile update FAILED.')
+            }
+        )
     }
 
 
@@ -74,7 +92,7 @@ function RightContent(props) {
                 <div className="col-sm-4 mb-2">
                 </div>
                 <div className="col-sm-4">
-                    <button type="button" className="btn btn-primary">Save</button>
+                    <button type="button" className="btn btn-primary" onClick={handleSaveButton}>Save</button>
                 </div>
                 <div className="-sm-3"></div>
             </div>
