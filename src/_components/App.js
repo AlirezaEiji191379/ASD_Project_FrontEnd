@@ -16,7 +16,7 @@ class App extends Component {
   onDragEnd = (result) => {
     const {destination, source, draggableId} = result;
     
-    if (!destination || destination === source){
+    if (!destination){
       return;
     }
 
