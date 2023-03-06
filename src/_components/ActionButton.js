@@ -16,12 +16,12 @@ class ActionButton extends React.Component{
         this.setState({
             formOpen: true
         });
-        console.log(this.state.formOpen);
     }
 
     closeForm = e => {
         this.setState({
-            formOpen : false
+            formOpen : false,
+            text: ""
         });
     }
 

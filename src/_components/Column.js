@@ -1,14 +1,26 @@
 import React from "react";
 import Task from "./Task";
 import ActionButton from "./ActionButton";
+import { Droppable } from "react-beautiful-dnd";
 
 const Column = ({title, tasks, columnId}) => {
     return(
-        <div style= {styles.ColumnContainer}>
-            <h3>{title}</h3>
-            {tasks.map(task => <Task key={task.id} text={task.text} />)}
-            <ActionButton columnId= {columnId}/>
-        </div>
+        <Droppable droppableId={String(columnId)}>
+            {provided =>(
+                <div {...provided.droppableProps} ref={provided.innerRef} style={styles.ColumnContainer}>
+                    <h3>{title}</h3>
+                    {tasks && tasks.map((task, index) =>
+                        <Task
+                            key={task.id}
+                            index= {index}
+                            text={task.text} 
+                            id= {task.id}
+                        />)}
+                    <ActionButton columnId= {columnId}/>
+                    {provided.placeholder}
+                </div>
+            )}
+        </Droppable>
     )
 }
 

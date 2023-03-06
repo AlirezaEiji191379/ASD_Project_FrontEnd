@@ -1,12 +1,12 @@
 import { ACTIONS } from "../_actions";
 
 let columnID = 1;
-let taskID = 1
+let taskID = 1;
 
 const initialState = [
     {
-        title : "First Column",
-        id : "0",
+        title : "Column",
+        id : 0,
         tasks : [
             {
                 id : 0,
