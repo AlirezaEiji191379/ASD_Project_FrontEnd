@@ -17,12 +17,19 @@ function handleResponse(response) {
 }
 
 function getUserInfo(email) {
-    const requestOptions = {
-        method: 'GET',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({email})
+    // const requestOptions = {
+    //     method: 'GET',
+    //     headers: {'Content-Type': 'application/json'},
+    //     body: JSON.stringify({email})
+    // };
+    // return fetch(profilePaths.USER_PROFILE_GET, requestOptions).then(handleResponse);
+    return {
+        username: 'rama1',
+        email: 'exmaple@rama.com',
+        publicUsername: 'RAMA1',
+        firstName: 'Matin',
+        lastName: 'Daghyani',
     };
-    return fetch(profilePaths.USER_PROFILE_GET, requestOptions).then(handleResponse);
 }
 
 function updateUserProfile(user) {

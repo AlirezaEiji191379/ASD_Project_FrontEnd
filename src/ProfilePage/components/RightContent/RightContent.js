@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './style.css';
 import {profileServices} from "../../../_services/profileServices";
+import {connect} from "react-redux";
 
 function RightContent(props) {
 
@@ -26,7 +27,7 @@ function RightContent(props) {
         setState({user: user});
     }
 
-    function handleSaveButton(){
+    function handleSaveButton() {
 
         profileServices.updateUserProfile(state.user).then(
             data => {
@@ -101,4 +102,13 @@ function RightContent(props) {
 
 }
 
-export default RightContent;
+
+function mapStateToProps(state) {
+    return {
+        email: state.email
+    }
+}
+
+const connectedRightContent = connect(mapStateToProps, null)(RightContent);
+
+export {connectedRightContent as RightContent};
