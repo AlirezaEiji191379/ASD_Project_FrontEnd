@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import './style.css';
-import {profileServices} from "../../../_services/profileServices";
+import '../_styles/Profile.css';
+import {profileServices} from "../_services/profileServices";
 import {connect} from "react-redux";
 
 function RightContent(props) {

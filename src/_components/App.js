@@ -1,7 +1,6 @@
-import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css"
-import {RegistrationPage} from "./RegistrationPage";
 import {Route, Routes} from "react-router-dom";
+import {RegistrationPage} from "./RegistrationPage";
 import {LoginPage} from "./LoginPage";
 import {ProfilePage} from "./ProfilePage";
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from "./components/Header";
-import {RightContent} from "./components/RightContent";
+import Header from "./Header";
+import {RightContent} from "./RightContent";
 
 function ProfilePage(props) {
 
