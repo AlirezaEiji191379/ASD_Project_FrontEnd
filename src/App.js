@@ -1,10 +1,18 @@
 import './App.css';
-import React from "react";
-import {ProfilePage} from "./ProfilePage";
+import "bootstrap/dist/css/bootstrap.min.css"
+import {RegistrationPage} from "./RegistrationPage";
+import {Route, Routes} from "react-router-dom";
+import {LoginPage} from "./LoginPage";
+
 
 function App() {
     return (
-        <ProfilePage/>
+        <>
+            <Routes>
+                <Route path="/" element={<RegistrationPage/>}/>
+                <Route path="/login" element={<LoginPage/>}/>
+            </Routes>
+        </>
     );
 }
 
