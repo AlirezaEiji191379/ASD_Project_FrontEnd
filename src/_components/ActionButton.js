@@ -4,7 +4,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import Card from '@mui/material/Card';
 import { Button } from "@mui/material";
 import { connect } from "react-redux";
-import { addColumn } from "../_actions/columnActions";
+import { addColumn, addTask } from "../_actions";
 class ActionButton extends React.Component{
 
     state = {
@@ -13,7 +13,6 @@ class ActionButton extends React.Component{
     }
 
     openForm = () =>{
-        console.log("here");
         this.setState({
             formOpen: true
         });
@@ -37,10 +36,23 @@ class ActionButton extends React.Component{
         const {text} = this.state;
 
         if (text){
+            this.setState({
+                text: ""
+            })
             dispatch(addColumn(text));
         }
+    }
 
-        return;
+    handleAddTask = () => {
+        const {dispatch, columnId} = this.props;
+        const {text} = this.state;
+
+        if(text){
+            this.setState({
+                text: ""
+            })
+            dispatch(addTask(columnId, text));
+        }
     }
 
     renderAddButton = () => {
@@ -97,8 +109,8 @@ class ActionButton extends React.Component{
                         }}
                     />
                 </Card>
-                <div style={styles.taskButtonContainer}>
-                    <Button onMouseDown={this.handleAddColumn} variant="contained" style ={{color : "white", backgroundColor : "#5aac44"}}>
+                <div style={styles.fromContainer}>
+                    <Button onMouseDown={column ? this.handleAddColumn : this.handleAddTask} variant="contained" style ={{color : "white", backgroundColor : "#5aac44"}}>
                         {buttonTitle}
                     </Button>
                     <Icon style = {{marginLeft: 8, cursor : "pointer", }}>
@@ -124,7 +136,7 @@ const styles = {
         width: 272,
         paddingLeft: 10
     },
-    taskButtonContainer:{
+    fromContainer:{
         marginTop: 8,
         display: "flex",
         alignItems: "center"
