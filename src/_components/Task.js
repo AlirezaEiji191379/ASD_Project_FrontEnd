@@ -72,7 +72,9 @@ const Task = React.memo(({ text, id, columnID, index, dispatch }) => {
 
   const renderEditForm = () => {
     return (
-      <Form text={taskText} onChange={handleChange} closeForm={closeForm}>
+      <Form text={taskText} onChange={handleChange} closeForm={closeForm}>\
+        {/* <label>{}</label> */} 
+        {/* TODO add dropdown */}
         <ActionButton onClick={saveTask}>Save</ActionButton>
       </Form>
     );
