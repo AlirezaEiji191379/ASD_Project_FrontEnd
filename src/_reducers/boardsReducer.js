@@ -31,7 +31,7 @@ const boardsReducer = (state = initialState, action) => {
 
       return state;
     }
-
+    
     case ACTIONS.DELETE_COLUMN: {
       const { columnID, boardID } = action.payload;
       const board = state[boardID];

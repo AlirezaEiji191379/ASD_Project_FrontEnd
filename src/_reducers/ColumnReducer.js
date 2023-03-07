@@ -37,14 +37,8 @@ const columnReducer = (state = initialState, action) => {
         droppableIdEnd,
         droppableIndexEnd,
         droppableIndexStart,
-
         type
       } = action.payload;
-
-      // draggin lists around - the c should handle this
-      if (type === "column") {
-        return state;
-      }
 
       // move tasks between columns
       if (droppableIdStart !== droppableIdEnd) {

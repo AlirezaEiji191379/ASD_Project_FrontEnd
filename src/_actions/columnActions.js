@@ -18,6 +18,7 @@ export const sort = (
   droppableIndexStart,
   droppableIndexEnd,
   draggableId,
+  type
 ) => {
   return (dispatch, getState) => {
     const boardID = getState().activeBoard;
@@ -29,6 +30,7 @@ export const sort = (
         droppableIndexEnd,
         droppableIndexStart,
         draggableId,
+        type,
         boardID
       }
     });
