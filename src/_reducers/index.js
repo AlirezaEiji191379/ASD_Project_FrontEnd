@@ -1,6 +1,14 @@
 import { combineReducers } from "redux";
-import ColumnReducer from "./ColumnReducer";
+import columnReducer from "./columnReducer";
+import taskReducer from "./taskReducer";
+import boardsReducer from "./boardsReducer";
+import boardOrderReducer from "./boardOrderReducer";
+import activeBoardReducer from "./activeBoardReducer";
 
 export default combineReducers({
-    columns: ColumnReducer
+    columns: columnReducer,
+    tasks: taskReducer,
+    boards: boardsReducer,
+    boardOrder: boardOrderReducer,
+    activeBoard: activeBoardReducer
 });
