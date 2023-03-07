@@ -20,15 +20,6 @@ const boardsReducer = (state = initialState, action) => {
     }
 
     case ACTIONS.DRAG_HAPPENED: {
-      const { boardID } = action.payload;
-      const board = state[boardID];
-      const columns = board.columns;
-      const {
-        droppableIndexEnd,
-        droppableIndexStart,
-        type
-      } = action.payload;
-
       return state;
     }
     

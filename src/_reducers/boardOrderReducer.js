@@ -1,5 +1,4 @@
 import { ACTIONS } from "../_actions";
-import uuid from "uuidv4";
 
 const initialState = ["board-0"];
 

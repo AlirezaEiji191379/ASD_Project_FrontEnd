@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Card from "@material-ui/core/Card";
-import Typography from "@material-ui/core/Typography";
-import CardContent from "@material-ui/core/CardContent";
+import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
+import CardContent from '@mui/material/CardContent';
+import Icon from '@mui/material/Icon';
 import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
-import Icon from "@material-ui/core/Icon";
 import Form from "./Form";
 import { editTask, deleteTask } from "../_actions";
 import { connect } from "react-redux";

@@ -6,6 +6,7 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import { sort, setActiveBoard } from "../_actions";
 import { Link } from "react-router-dom";
+// import withRouter from "../withRouter";
 
 const ColumnContainer = styled.div`
   display: flex;
@@ -41,6 +42,8 @@ class Board extends PureComponent {
 
   render() {
     const { columns, tasks, match, boards } = this.props;
+    // console.log("props:", this.props);
+    // console.log("params:", this.params);
     const { boardID } = match.params;
     const board = boards[boardID];
     if (!board) {
@@ -90,4 +93,4 @@ const mapStateToProps = state => ({
   boards: state.boards
 });
 
-export default connect(mapStateToProps)(Board);
+export default connect(mapStateToProps)(withRouter(Board));

@@ -1,5 +1,5 @@
 import React from "react";
-import Icon from "@material-ui/core/Icon";
+import Icon from '@mui/material/Icon';
 import ActionButton from "./ActionButton";
 import { connect } from "react-redux";
 import { addColumn, addTask } from "../_actions";
@@ -41,8 +41,6 @@ class Create extends React.PureComponent {
       });
       dispatch(addColumn(text));
     }
-
-    return;
   };
 
   handleAddTask = () => {

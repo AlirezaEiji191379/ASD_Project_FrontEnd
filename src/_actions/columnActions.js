@@ -1,10 +1,10 @@
 import { ACTIONS } from "../_actions";
-import uuid from "uuidv4";
+import { v4 as uuidv4 } from 'uuid';
 
 export const addColumn = (title) => {
   return (dispatch, getState) => {
     const boardID = getState().activeBoard;
-    const id = uuid();
+    const id = uuidv4();
     dispatch({
       type: ACTIONS.ADD_COLUMN,
       payload: { title, boardID, id }

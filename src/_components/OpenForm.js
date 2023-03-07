@@ -1,5 +1,5 @@
 import React from "react";
-import Icon from "@material-ui/core/Icon";
+import Icon from '@mui/material/Icon';
 import styled from "styled-components";
 
 const OpenForm = ({ column, children, onClick }) => {

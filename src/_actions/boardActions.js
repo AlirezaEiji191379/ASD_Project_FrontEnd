@@ -1,5 +1,5 @@
 import { ACTIONS } from "../_actions";
-import uuid from "uuidv4";
+import { v4 as uuidv4 } from 'uuid';
 
 export const setActiveBoard = id => {
   return {
@@ -9,7 +9,7 @@ export const setActiveBoard = id => {
 };
 
 export const addBoard = title => {
-  const id = uuid();
+  const id = uuidv4();
   return {
     type: ACTIONS.ADD_BOARD,
     payload: { title, id }

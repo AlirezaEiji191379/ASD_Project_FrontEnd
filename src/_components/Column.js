@@ -5,7 +5,8 @@ import { Droppable, Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { editTitle, deleteColumn } from "../_actions";
-import Icon from "@material-ui/core/Icon";
+import Icon from '@mui/material/Icon';
+
 
 const ColumnContainer = styled.div`
   background-color: #dfe3e6;
