@@ -4,10 +4,21 @@ import App from './_components/App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './_store';
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  html {
+    background-color: orange;
+    box-sizing: border-box;
+    transition: all 0.5s ease-in;
+  }
+`;
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
+    <GlobalStyle />
     {/* <React.StrictMode> */}
       <App />
     {/* </React.StrictMode> */}

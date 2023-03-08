@@ -93,4 +93,4 @@ const mapStateToProps = state => ({
   boards: state.boards
 });
 
-export default connect(mapStateToProps)(withRouter(Board));
+export default connect(mapStateToProps)(Board);
