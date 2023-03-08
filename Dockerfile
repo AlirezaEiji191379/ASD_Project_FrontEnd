@@ -14,4 +14,4 @@ COPY ./Nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/build  /etc/nginx/html/
 COPY ./wait-for-it.sh .
 RUN chmod 777 ./wait-for-it.sh
-ENTRYPOINT [ "./wait-for-it.sh","--timeout=300","--host=app","--port=8080","-s","--","nginx","-g","daemon off;" ] 
+ENTRYPOINT [ "./wait-for-it.sh","--timeout=600","--host=app","--port=8080","-s","--","nginx","-g","daemon off;" ] 
