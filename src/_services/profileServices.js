@@ -16,27 +16,27 @@ function handleResponse(response) {
     });
 }
 
-function getUserInfo(email) {
-    // const requestOptions = {
-    //     method: 'GET',
-    //     headers: {'Content-Type': 'application/json'},
-    //     body: JSON.stringify({email})
-    // };
-    // return fetch(profilePaths.USER_PROFILE_GET, requestOptions).then(handleResponse);
-    return {
-        username: 'rama1',
-        email: 'exmaple@rama.com',
-        publicUsername: 'RAMA1',
-        firstName: 'Matin',
-        lastName: 'Daghyani',
+function getUserInfo() {
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem('token')
+        },
     };
+    return fetch(profilePaths.USER_PROFILE_GET, requestOptions).then(handleResponse);
 }
 
 function updateUserProfile(user) {
+    let value = user
+    value['token'] = localStorage.getItem('token');
     const requestOptions = {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({user: user})
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem('token')
+        },
+        body: JSON.stringify(value)
     };
     return fetch(profilePaths.USER_PROFILE_UPDATE, requestOptions).then(handleResponse);
 }

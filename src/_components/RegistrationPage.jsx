@@ -1,12 +1,24 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import '../_styles/UserLogin.css'
 import {connect} from "react-redux";
 import {userActions} from "../_actions/userActions";
 import {useNavigate} from "react-router-dom";
+import {userServices} from "../_services/userServices";
 
 function RegistrationPage(props) {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
+
+    useEffect(() => {
+            let token = localStorage.getItem('token');
+            token = (token == null) ? '' : token;
+            userServices.validateToken(token).then(
+                data => {
+                    navigate('/profile')
+                }
+            )
+        },
+    );
 
     function handleNextButton() {
         props.checkUser(email);
@@ -42,11 +54,6 @@ function RegistrationPage(props) {
     )
 }
 
-// function mapStateToProps(state) {
-//     const {registering} = state.registration;
-//     return {registering};
-// }
-//
 const mapDispatchToProps = {
     checkUser: userActions.checkUser
 }

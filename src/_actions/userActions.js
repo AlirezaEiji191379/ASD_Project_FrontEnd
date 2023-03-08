@@ -7,7 +7,6 @@ import {userServices} from "../_services/userServices";
 
 function checkUser(email) {
     const payload = {email: email};
-    // return userEmailExist(payload);
     return (dispatch) => {
         return userServices.sendEmail(email).then(
             data => {
@@ -29,20 +28,24 @@ const userEmailNotExist = (payload) => {
 };
 
 function loginUser(email, password) {
-    // return userLoginSuccess();
     return (dispatch) => {
         return userServices.login(email, password).then(
             data => {
                 dispatch(userLoginSuccess());
+                console.log('Login succeed!')
+                return true;
             },
             error => {
                 dispatch(userLoginFailed());
+                console.log('Login FAILED')
+                return false;
             }
         )
     }
 }
 
 const userLoginSuccess = (payload) => {
+    localStorage.setItem('token', payload.token);
     return {type: userConstants.LOGIN_SUCCESS, payload: payload}
 }
 const userLoginFailed = (payload) => {
@@ -50,20 +53,24 @@ const userLoginFailed = (payload) => {
 }
 
 function registerUser(email, password) {
-    // return userRegisterSuccess();
     return (dispatch) => {
         return userServices.register(email, password).then(
             data => {
-                dispatch(userRegisterSuccess());
+                dispatch(userRegisterSuccess(data));
+                console.log('Registration succeed!')
+                return true;
             },
             error => {
                 dispatch(userRegisterFailed(error));
+                console.log('Registration FAILED.')
+                return false;
             }
         )
     }
 }
 
 const userRegisterSuccess = (payload) => {
+    localStorage.setItem('token', payload.token);
     return {type: userConstants.REGISTER_SUCCESS, payload: payload}
 }
 const userRegisterFailed = (payload) => {

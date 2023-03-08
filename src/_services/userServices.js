@@ -6,12 +6,10 @@ function handleResponse(response) {
     */
     return response.text().then(text => {
         const data = text && JSON.parse(text);
-        // TODO: How does backend inform us about user not exit? (Matin, )
         if (!response.ok) {
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
         }
-
         return data;
     });
 }
@@ -20,35 +18,41 @@ function sendEmail(email) {
     const requestOptions = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({email})
+        body: JSON.stringify({'email': email})
     };
-    return fetch(userPaths.LOGIN_PATH, requestOptions).then(handleResponse);
+    return fetch(userPaths.CHECK_EMAIL_PATH, requestOptions).then(handleResponse);
 }
 
 function login(email, password) {
-    //TODO: TO IMPLEMENT
-
     const requestOptions = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({})
+        body: JSON.stringify({'email': email, 'password': password})
     };
     return fetch(userPaths.LOGIN_PATH, requestOptions).then(handleResponse);
 }
 
 function register(email, password) {
-    //TODO: TO IMPLEMENT
-
     const requestOptions = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({})
+        body: JSON.stringify({'email': email, 'password': password})
     };
-    return fetch(userPaths.LOGIN_PATH, requestOptions).then(handleResponse);
+    return fetch(userPaths.REGISTER_PATH, requestOptions).then(handleResponse);
+}
+
+function validateToken(token) {
+    const requestOptions = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({'token': token})
+    };
+    return fetch(userPaths.VALIDATE_TOKEN, requestOptions).then(handleResponse);
 }
 
 export const userServices = {
     sendEmail: sendEmail,
     login: login,
-    register: register
+    register: register,
+    validateToken: validateToken
 }

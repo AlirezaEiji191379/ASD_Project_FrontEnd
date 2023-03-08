@@ -9,16 +9,14 @@ function RightContent(props) {
         user: {
             username: '',
             email: props.email,
-            publicUsername: '',
-            firstName: '',
-            lastName: '',
+            displayName: '',
         },
     })
 
     useEffect(() => {
-        const user = profileServices.getUserInfo(props.email);
+        const user = profileServices.getUserInfo();
         setState({user: user}) //TODO: Fix response mistype (Matin, )
-    }, [props.email]);
+    }, []);
 
     function inputChange(event) {
         const {name, value} = event.target;
@@ -41,26 +39,11 @@ function RightContent(props) {
 
 
     const {
-        firstName, lastName, username, publicUsername,
+        username, displayName,
         email
     } = state.user;
     return (
         <div className="rightPanel">
-            <div className="row">
-                <label className="col-sm-2 col-form-label">Name</label>
-                <div className="col-sm-3 mb-2">
-                    <input type="text" value={firstName} name="firstName" onChange={(e) => {
-                        inputChange(e)
-                    }} className="form-control" placeholder="First Name"/>
-                </div>
-                <div className="col-sm-3 mb-2">
-                    <input type="text" value={lastName} name="lastName" onChange={(e) => {
-                        inputChange(e)
-                    }} className="form-control" placeholder="Last Name"/>
-                </div>
-                <div className="col-sm-4">
-                </div>
-            </div>
             <div className="row">
                 <label className="col-sm-2 col-form-label">Username</label>
                 <div className="col-sm-3 mb-2">
@@ -74,7 +57,7 @@ function RightContent(props) {
             <div className="row">
                 <label className="col-sm-2 col-form-label">Public Username</label>
                 <div className="col-sm-3 mb-2">
-                    <input type="text" value={publicUsername} name="publicUsername" onChange={(e) => {
+                    <input type="text" value={displayName} name="publicUsername" onChange={(e) => {
                         inputChange(e)
                     }} className="form-control" placeholder="How people find you"/>
                 </div>

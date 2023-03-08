@@ -14,6 +14,10 @@ export function userReducer(state = userState, action) {
                 userExist: true,
                 email: action.payload.email
             };
+        case userConstants.REGISTER_SUCCESS:
+            return state;
+        case userConstants.REGISTER_FAILED:
+            return state;
         default:{
             console.log('Register or Login');
             return state;

@@ -4,13 +4,19 @@ import './index.css';
 import App from './_components/App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
+import {createStore} from "redux";
+import {userReducer} from "./_reducers/userReducers";
+import {Provider} from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const store = createStore(userReducer);
 root.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <App/>
-        </BrowserRouter>
+        <Provider store={store}>
+            <BrowserRouter>
+                <App/>
+            </BrowserRouter>
+        </Provider>
     </React.StrictMode>
 );
 

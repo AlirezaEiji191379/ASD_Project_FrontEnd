@@ -2,9 +2,11 @@ import React, {useState} from "react"
 import '../_styles/UserLogin.css'
 import {userActions} from "../_actions/userActions";
 import {connect} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 function LoginPage(props) {
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     function handleChange(e) {
         setPassword(e.target.value);
@@ -13,10 +15,18 @@ function LoginPage(props) {
     function handleLoginButton() {
         if (props.userExist) {
             console.log('User Exist');
-            props.loginUser(props.email, password);
+            const result = props.loginUser(props.email, password);
+            if (result)
+                navigate('/profile');
+            else
+                alert('Password/Email do not match.')
         } else {
             console.log('User Does not Exist');
-            props.registerUser(props.email, password);
+            const result = props.registerUser(props.email, password);
+            if (result)
+                navigate('profile');
+            else
+                alert('Registration failed!');
         }
     }
 
