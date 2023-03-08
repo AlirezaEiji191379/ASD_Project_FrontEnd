@@ -37,11 +37,11 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       
 
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          port: 22
-          script: docker pull alirezaeiji151379/asd_fronend:beta & docker service update asd_nginx
+      # - name: executing remote ssh commands using password
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.SSH_HOST }}
+      #     username: ${{ secrets.SSH_USERNAME }}
+      #     password: ${{ secrets.SSH_PASSWORD }}
+      #     port: 22
+      #     script: docker pull alirezaeiji151379/asd_fronend:beta & docker service update asd_nginx
