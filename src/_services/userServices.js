@@ -47,6 +47,7 @@ function validateToken(token) {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({'token': token})
     };
+    console.log(userPaths.VALIDATE_TOKEN);
     return fetch(userPaths.VALIDATE_TOKEN, requestOptions).then(handleResponse);
 }
 

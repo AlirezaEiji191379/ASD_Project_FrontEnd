@@ -11,7 +11,9 @@ function RegistrationPage(props) {
 
     useEffect(() => {
             let token = localStorage.getItem('token');
-            token = (token == null) ? '' : token;
+            console.log(token);
+            if (token == null)
+                return;
             userServices.validateToken(token).then(
                 data => {
                     navigate('/profile')
