@@ -11,7 +11,7 @@ export function userReducer(state = userState, action) {
             };
         case userConstants.USER_DOES_NOT_EXISTS:
             return {
-                userExist: true,
+                userExist: false,
                 email: action.payload.email
             };
         case userConstants.REGISTER_SUCCESS:

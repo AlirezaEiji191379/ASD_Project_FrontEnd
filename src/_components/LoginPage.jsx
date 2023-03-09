@@ -24,7 +24,7 @@ function LoginPage(props) {
             console.log('User Does not Exist');
             const result = props.registerUser(props.email, password);
             if (result)
-                navigate('profile');
+                navigate('/profile');
             else
                 alert('Registration failed!');
         }

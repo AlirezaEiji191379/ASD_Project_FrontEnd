@@ -10,10 +10,13 @@ function checkUser(email) {
     return (dispatch) => {
         return userServices.sendEmail(email).then(
             data => {
-                dispatch(userEmailExist(payload));
+                if (data.exist)
+                    dispatch(userEmailExist(payload));
+                else
+                    dispatch(userEmailNotExist(payload))
             },
             error => {
-                dispatch(userEmailNotExist(payload));
+                alert('Request failed');
             }
         )
     }
